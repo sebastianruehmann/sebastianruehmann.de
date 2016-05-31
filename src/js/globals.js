@@ -6,5 +6,7 @@ function getRandomColor() {
 
 var color = getRandomColor();
 
+document.body.style.backgroundColor = "rgb("+color+")";
+
 var W = window.innerWidth;
 var H = window.innerHeight;
