@@ -12,7 +12,7 @@ function Particle() {
     }
 }
 
-function particleResize() {
+function start() {
     particleCount = Math.round(W * H / 9500 + 20), canvas.width = W * ratio, canvas.style.width = W +"px", canvas.height = H * ratio, canvas.style.height = H + "px", particles = [];
     for (var t = 0; particleCount > t; t++) particles.push(new Particle)
 
@@ -86,12 +86,7 @@ var dpr = window.devicePixelRatio || 1,
 
 var ratio = dpr / bsr;
 
-window.onresize = function () {
-    W = window.innerWidth, H = window.innerHeight;
-    particleResize();
-};
-
-particleResize();
+start();
 
 setTimeout(function () {
     animloop();
