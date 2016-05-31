@@ -1,41 +1,69 @@
-function validate(el, length, email) {
+function validateInput(el) {
     var okay = false;
-    if(!email) {
-        if (el.value.length >= length) {
-            okay = true;
-        }
-    } else {
-        if(validateEmail(el.value)) {
-            okay = true;
-        }
+    switch (el.name) {
+        case "name":
+            if (el.value.length >= 4) {
+                okay = true;
+            }
+            break;
+        case "email":
+            var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            if(re.test(el.value)) {
+                okay = true;
+            }
+            break;
+        case "message":
+            if (el.value.length >= 15) {
+                okay = true;
+            }
+            break;
+        default:
+            okay = false;
+            break;
     }
-    (okay)? el.className = "success": el.className = "error";
 
     return okay;
 }
 
-function validateEmail(email) {
-    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    return re.test(email);
+function allInputsValid(inputs) {
+    var allValid = true;
+    inputs.forEach(function(el,key) {
+        var isValid = validateInput(el);
+        if(!isValid) {
+            allValid = false;
+        }
+        setInputState(el, isValid);
+    });
+
+    return allValid;
 }
 
-var inp = document.getElementById("form").childNodes;
+function setInputState(el, okay) {
+    (okay)? el.className = "success": el.className = "error";
+}
 
-inp[1].onblur = function() {validate(this,4);};
-inp[3].onblur = function() {validate(this,5,true);};
-inp[4].onblur = function() {validate(this,15);};
+var inputs = [
+    document.getElementById("fieldName"),
+    document.getElementById("fieldEmail"),
+    document.getElementById("fieldMessage")];
+
+inputs.forEach(function(el,key) {
+    el.onblur = function() {
+        var isValid = validateInput(el);
+        setInputState(el,isValid);
+    }
+});
 
 document.getElementById("form").addEventListener("submit", function() {
-    if(validate(inp[1], 4) && validate(inp[3],5,true) && validate(inp[4],15)) {
+    if(allInputsValid(inputs)) {
         var xmlhttp = new XMLHttpRequest();
 
         var url = "send.php";
-        var params = "name="+ inp[1].value +"&email="+ inp[3].value +"&message="+ encodeURIComponent(inp[4].value);
+
+        var params = "name="+ document.getElementById("fieldName").value +"&email="+ document.getElementById("fieldEmail").value +"&message="+ encodeURIComponent(document.getElementById("fieldMessage").value);
         xmlhttp.open("POST", url, true);
 
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.setRequestHeader("Content-length", params.length);
-        xmlhttp.setRequestHeader("Connection", "close");
 
         xmlhttp.onreadystatechange = function (aEvt) {
             if (xmlhttp.readyState == 4) {
