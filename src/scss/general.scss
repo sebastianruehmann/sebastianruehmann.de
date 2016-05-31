@@ -1,5 +1,22 @@
 @import "boilerplate";
 
+@font-face {
+  font-family: 'Raleway';
+  font-weight: 700;
+  src: url(../inc/fonts/Raleway-Bold.ttf);
+}
+
+@font-face {
+  font-family: 'WorkSans';
+  font-weight: 400;
+  src: url(../inc/fonts/WorkSans-Regular.ttf);
+}
+@font-face {
+  font-family: 'WorkSans';
+  font-weight: 600;
+  src: url(../inc/fonts/WorkSans-SemiBold.ttf);
+}
+
 *,
 *::before,
 *::after {
@@ -13,7 +30,19 @@ section {
 body, html {
   color: #636363;
   font-family: $font;
-  font-size: $tnormal;
+  font-size: $tnormal - 8px;
+  @include breakpoint(phone) {
+    font-size: $tnormal - 7px;
+  }
+  @include breakpoint(tablet) {
+    font-size: $tnormal - 5px;
+  }
+  @include breakpoint(smalldesktop) {
+    font-size: $tnormal - 3px;
+  }
+  @include breakpoint(bigdesktop) {
+    font-size: $tnormal;
+  }
   font-weight: 300;
   height: 100%;
   margin: 0;
@@ -29,23 +58,12 @@ body {
   overflow-x: hidden;
 }
 
-@font-face {
-  font-family: 'Raleway';
-  font-weight: 700;
-  src: url(../inc/fonts/Raleway-Bold.ttf);
-}
-
-@font-face {
-  font-family: 'Ostrich';
-  font-weight: 900;
-  src: url(../inc/fonts/OstrichSans-Heavy.otf);
-}
-
 a {
   color: $greyColor;
 }
 
 h1 {
+  font-family: $headlinefont;
   font-weight: 300;
   font-size: $fl;
   margin: 0 0 5px 0;
@@ -54,8 +72,10 @@ h1 {
 h2 {
   font-weight: 300;
   font-size: $f2;
-  margin-top: 0;
+  margin: 5px 0;
   text-transform: none;
+  text-align: center;
+  font-family: $headlinefont;
 }
 
 h3 {
@@ -66,14 +86,11 @@ h3 {
   text-transform: none;
 }
 
-h1,h2 {
-  color: #333;
-  font-family: $headlinefont;
-}
-
 p {
   line-height: 1.4em;
-  letter-spacing: 0.1px;
+  letter-spacing: 0.01em;
+  text-align: center;
+  padding: 10px 5%;
 
   @include breakpoint(phone) {
     letter-spacing: 0.1px;

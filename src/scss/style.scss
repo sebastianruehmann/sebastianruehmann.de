@@ -7,6 +7,20 @@
   position: fixed;
 }
 
+/* Kontakt */
+
+#contact {
+  & h2 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  & h2, p {
+    text-align: left;
+    margin-left: 0;
+    padding-left: 0;
+  }
+}
+
 input[type=submit] {
   border: 2px $greyColor solid;
   display: inline-block;
@@ -14,6 +28,10 @@ input[type=submit] {
   letter-spacing: 0.8px;
   text-decoration: none;
   text-transform: uppercase;
+  background: $white;
+  cursor: pointer;
+  margin-top: 30px;
+  padding: 10px 60px 10px 60px;
 
   &:hover {
     background-color: $greyHoverColor;
@@ -35,13 +53,6 @@ input, textarea, .submit {
   font-family: inherit;
   font-weight: 300;
   outline: none;
-}
-
-input[type=submit] {
-  background: $white;
-  cursor: pointer;
-  margin-top: 30px;
-  padding: 10px 60px 10px 60px;
 }
 
 #form {
@@ -67,8 +78,6 @@ input[type=submit] {
     padding: 5px 10px 5px 10px;
   }
 }
-
-/* Kontakt */
 
 input[type=text], input[type=email], textarea {
   border: 0;
