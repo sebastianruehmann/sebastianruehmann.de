@@ -4,6 +4,8 @@
 @import "container.scss";
 
 #particles {
+  width: 100vw !important;
+  height: 100vh !important;
   position: fixed;
 }
 
@@ -24,7 +26,7 @@
 input[type=submit] {
   border: 2px $greyColor solid;
   display: inline-block;
-  font-size: 17px;
+  font-size: 1rem;
   letter-spacing: 0.8px;
   text-decoration: none;
   text-transform: uppercase;
@@ -70,22 +72,13 @@ input, textarea, .submit {
   min-height: 100px;
 }
 
-.box {
-  background: $lightGrey;
-  padding: 10px 30px 10px 30px;
-
-  @include breakpoint(phone) {
-    padding: 5px 10px 5px 10px;
-  }
-}
-
 input[type=text], input[type=email], textarea {
   border: 0;
   transition: all 800ms;
   resize: none;
   overflow: auto;
   border-bottom: 2px solid #bdc3c7;
-  font-size: 16px;
+  font-size: 0.9rem;
   line-height: 1.467;
   padding: 4px;
   height: 42px;
@@ -154,39 +147,119 @@ textarea {
     position: relative;
 
     & .case_teaser {
-      filter: grayscale(100%);
+      display: block;
+      filter: contrast(100%);
       width: 100%;
       
       &.active {
-        filter: grayscale(0);
+        filter: contrast(110%);
       }
     }
 
     & #cases_summary {
-      background: #333;
       left: 50%;
-      padding: 5% 2.5%;
+      padding: 230px * 0.25 0;
       position: absolute;
       top: 50%;
-      transform: translate(-50%,-50%);
       width: 25%;
+      display: none;
+      transform: translate(-50%, -50%);
 
-      @include breakpoint(phone) {
-        display: none;
+      @include breakpoint(smalldesktop) {
+        top: 0;
+        transform: translate(-50%, 0);
+      }
+
+      @include breakpoint(tablet) {
+        display: block;
       }
 
       & h3 {
         font-size: $tnormal;
-        margin: 0 0 20px 0;
-        text-align: center;
         text-transform: uppercase;
+        transform: translateY(-50%);
+        margin-top: 30px;
+
+        @include breakpoint(smalldesktop) {
+          margin-top: 230px * 0.25 + 10px;
+        }
 
         & a {
-          color: #FFF;
-          font-family: Raleway, sans-serif;
+          display: block;
+          color: #636363;
+          font-family: $headlinefont;
           padding: 10px;
           text-decoration: none;
           text-transform: none;
+          text-align: center;
+        }
+
+        @include breakpoint(smalldesktop) {
+          &:after {
+            background: #636363;
+            display: block;
+            content: "";
+            height: 1px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+
+          &.case-section-left {
+            & a {
+              text-align: left;
+            }
+            &:after {
+              left: -5px;
+              width: 130px;
+              transform: translateX(-100%);
+            }
+
+            &.case-is-right:after {
+              width: 20px;
+            }
+          }
+
+          &.case-section-right {
+            &:after {
+              right: -5px;
+              width: 130px;
+              transform: translateX(100%);
+            }
+
+            &.case-is-left:after {
+              width: 20px;
+            }
+
+            & a {
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+
+    & .col-left-1-3 {
+      & .case-content {
+        &.left:after {
+          right: -30px;
+        }
+
+        &.right:after {
+          right: -30px;
+        }
+      }
+    }
+
+    & .col-right-1-3 {
+      margin-top: 230px * 0.5;
+      & .case-content {
+        &:after {
+          left: -30px;
+        }
+
+        &:after {
+          left: -30px;
         }
       }
     }
@@ -195,16 +268,29 @@ textarea {
     & .col-right-1-3 {
       position: relative;
 
+      width: 46%;
+      @include breakpoint(tablet) {
+        width: 33.333%;
+      }
+      @include breakpoint(phone) {
+        width: 100%;
+      }
+
       & .case-content {
         position: relative;
-        width: 66.66%;
+        margin-bottom: 20px;
+        width: 230px;
+
+        @include breakpoint(phone) {
+          width: calc(50% - 10px);
+        }
 
         /*&:hover .more {
           display: block;
         }*/
 
         &:hover img {
-          filter: grayscale(0);
+          filter: contrast(110%);
         }
 
         & .more {
@@ -310,17 +396,12 @@ footer {
       width: 1050px;
     }
 
-    & li:first-child a {
-      float: left;
-    }
     & li a {
       color: $white;
       float: right;
       padding: 20px 15px 20px 15px;
-      font-size: 21px;
-      font-family: 'Ostrich', sans-serif;
-      font-weight: 900;
-      letter-spacing: 2px;
+      font-size: 0.7rem;
+      font-family: $headlinefont;
       text-decoration: none;
       text-transform: uppercase;
 

@@ -45,23 +45,26 @@ gulp.task('html', function(cb) {
 
     workslength = Object.keys(works).length;
 
+    var top = {};
+    top.left = 0;
+    top.right = 0;
     var i = 0;
     for (var key in works) {
         if (works.hasOwnProperty(key)) {
-            if (i != 0 || i == workslength / 2) {
-                top = Math.floor(Math.random()*35) + 1;
-                top *= Math.floor(Math.random()*2) == 1 ? 1 : -1
-                works[key].top = top;
-            } else {
-                works[key].top = 0;
+            if (i % 2 == 1) {
+                top = top + 50;
             }
+
+            works[key].top = top;
 
             works[key].orientation = Math.round(i / 2) % 2 == 0  ? 'left' : 'right';
 
             if (i % 2 == 0) {
                 worksections.left[key] = works[key];
+                works[key].section = "left";
             } else {
                 worksections.right[key] = works[key];
+                works[key].section = "right";
             }
 
             i++;

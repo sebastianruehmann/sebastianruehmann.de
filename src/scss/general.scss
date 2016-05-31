@@ -23,12 +23,16 @@
   box-sizing: border-box;
 }
 
+.preload * {
+  transition: none !important;
+}
+
 section {
   height: 100%;
 }
 
 body, html {
-  color: #636363;
+  color: #4f4f4f;
   font-family: $font;
   font-size: $tnormal - 8px;
   @include breakpoint(phone) {
