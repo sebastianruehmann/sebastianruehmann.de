@@ -1,0 +1,122 @@
+@import "boilerplate";
+
+.content {
+  clear: both;
+  margin-top: 2%;
+}
+
+#content-wrapper {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  transition: all 0.5s ease;
+  width: 100%;
+  z-index: 2;
+  -webkit-backface-visibility: hidden;
+
+  &.isActive {
+    transform: translate3d(100%, 72px, 0);
+  }
+  &.isChanged {
+    transform: translate3d(100%, 2px, 0);
+  }
+}
+
+article {
+  background: #fefefe;
+  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.51);
+  margin: 20px 0 0 0;
+  padding: 20px 0;
+  position: relative;
+  width: 100%;
+}
+
+.container {
+  box-sizing: border-box;
+  margin: 20px auto;
+  padding: 0 15px;
+  height: 100%;
+  width: 100%;
+
+  @include breakpoint(phone) {
+    padding: 0 20px;
+  }
+
+  @include breakpoint(tablet) {
+    padding: 0 10px;
+  }
+
+  @include breakpoint(smalldesktop) {
+    width: 1050px;
+  }
+}
+
+.col-left-1-3 {
+  float: left;
+  width: 33.333%;
+
+  @include breakpoint(phone) {
+    float: inherit;
+    width: 100%;
+  }
+}
+
+.col-left-2-3 {
+  float: left;
+  width: 66.666%;
+
+  @include breakpoint(phone) {
+    float: inherit;
+    width: 100%;
+  }
+}
+
+.col-left-1-4 {
+  float: left;
+  width: 50%;
+
+  @include breakpoint(tablet) {
+    width: 25%;
+  }
+
+  @include breakpoint(phone) {
+    float: inherit;
+    width: 100%;
+  }
+}
+
+.col-right-1-4 {
+  float: right;
+  width: 50%;
+
+  @include breakpoint(tablet) {
+    width: 25%;
+  }
+
+  @include breakpoint(phone) {
+    float: inherit;
+    width: 100%;
+  }
+}
+
+.col-right-1-3 {
+  float: right;
+  width: 33.333%;
+
+  @include breakpoint(phone) {
+    float: inherit;
+    width: 100%;
+  }
+}
+
+.col-right-1-3, .col-right-1-4, .col-left-1-3, .col-left-1-4, .col-left-2-3 {
+  position: relative;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}

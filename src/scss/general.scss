@@ -1,0 +1,97 @@
+@import "boilerplate";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+section {
+  height: 100%;
+}
+
+body, html {
+  color: #636363;
+  font-family: $font;
+  font-size: $tnormal;
+  font-weight: 300;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  &.preload * {
+    transition: none !important;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  font-weight: 700;
+  src: url(../inc/fonts/Raleway-Bold.ttf);
+}
+
+@font-face {
+  font-family: 'Ostrich';
+  font-weight: 900;
+  src: url(../inc/fonts/OstrichSans-Heavy.otf);
+}
+
+a {
+  color: $greyColor;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: $fl;
+  margin: 0 0 5px 0;
+}
+
+h2 {
+  font-weight: 300;
+  font-size: $f2;
+  margin-top: 0;
+  text-transform: none;
+}
+
+h3 {
+  font-weight: 300;
+  font-size: $f3;
+  margin: 0;
+  padding: 3px 0 6px 0;
+  text-transform: none;
+}
+
+h1,h2 {
+  color: #333;
+  font-family: $headlinefont;
+}
+
+p {
+  line-height: 1.4em;
+  letter-spacing: 0.1px;
+
+  @include breakpoint(phone) {
+    letter-spacing: 0.1px;
+    text-transform: none;
+  }
+
+  a {
+    border-bottom: 1px solid $greyColor;
+    text-decoration: none;
+  }
+
+  a:hover {
+    border-bottom: 1px solid $greyHoverColor;
+    color: #3b3b3b;
+    transition: all 0.5s ease;
+  }
+}
+
+.hidden {
+  display: none;
+}

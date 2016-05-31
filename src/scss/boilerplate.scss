@@ -1,0 +1,56 @@
+$font: Helvetica, sans-serif;
+$headlinefont: Raleway, sans-serif;
+
+/* COLORS */
+
+$greyColor: #b7b7b7;
+$greyHoverColor: #3b3b3b;
+$lightGrey: #eeeeee;
+$white: #FFFFFF;
+$green: #2ecc71;
+$red: #e74c3c;
+$beige: #ddcbaa;
+$teal: #48c9b0;
+
+/* FONT-SIZE */
+
+$fl: 36px;
+$f2: 30px;
+$f3: 20px;
+$tnormal: 18px;
+
+/* BREAKPOINTS */
+
+
+
+@mixin breakpoint($point) {
+  @if $point == bigdesktop {
+    @media (min-width: 1600px) {
+      @content;
+    }
+  }
+
+  @if $point == smalldesktop {
+    @media (min-width: 1240px) {
+      @content;
+    }
+  }
+
+  @else if $point == tablet {
+    @media (min-width: 960px) {
+      @content;
+    }
+  }
+
+  @else if $point == phone {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+
+  @else if $point == watch {
+    @media (max-width: 312px) and (max-height: 390px) {
+      @content;
+    }
+  }
+}

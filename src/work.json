@@ -1,0 +1,37 @@
+{
+    "bonduelle": {
+      "title": "Bonduelle",
+      "description": "Bonduelle Deutschland",
+      "link": "https:\/\/www.bonduelle.de"
+    },
+    "bytefm": {
+      "title": "ByteFM Shop",
+      "description": "ByteFM Shop",
+      "link": "https:\/\/byte.fm/shop"
+    },
+    "casio": {
+      "title": "Casio",
+      "description": "Raus ins Abenteuer",
+      "link": "http:\/\/raus-ins-abenteuer.de"
+    },
+    "schafhof": {
+      "title": "Gestüt Schafhof",
+      "description": "Gestüt Schafhof",
+      "link": "http:\/\/gestuet-schafhof.com"
+    },
+    "soerensieg": {
+      "title": "Sören Sieg",
+      "description": "Sören Sieg",
+      "link": "http:\/\/soerensieg.de"
+    },
+    "krebaer": {
+      "title": "Krebaer Nusswerk",
+      "description": "Krebaer Nusswerk",
+      "link": "http:\/\/krebaer-nusswerk.de"
+    },
+    "theos": {
+      "title": "Theos Hamburg",
+      "description": "Theos Hamburg",
+      "link": "http:\/\/theos-hamburg.de"
+    }
+  }

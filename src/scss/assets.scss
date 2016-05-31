@@ -1,0 +1,199 @@
+@import "boilerplate";
+
+.loaderprogress {
+  color: #333;
+  position: absolute;
+  left: 0px;
+  text-align: center;
+  width: 100%;
+  margin-top: 15px;
+  top: 50%;
+}
+
+.loaderSize {
+  height: 15px;
+  width: 15px;
+}
+
+.loader {
+  @extend .loaderSize;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transform: translate3d(-7.5px, -7.5px, 0) rotate(45deg);
+  transform: translate3d(-7.5px, -7.5px, 0) rotate(45deg);
+
+  .cube {
+    @extend .loaderSize;
+    transform-style: preserve-3d;
+    animation: rotation 2s infinite cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    .face {
+      position: absolute;
+      @extend .loaderSize;
+    }
+
+    .face_1 {
+      background: #eee;
+      -webkit-transform: rotateY(0deg) translateZ(7.5px);
+      transform: rotateY(0deg) translateZ(7.5px);
+    }
+
+    .face_2 {
+      background: #eee;
+      -webkit-transform: rotateY(180deg) translateZ(7.5px);
+      transform: rotateY(180deg) translateZ(7.5px);
+    }
+
+    .face_3 {
+      background: #959595;
+      -webkit-transform: rotateY(90deg) translateZ(7.5px);
+      transform: rotateY(90deg) translateZ(7.5px);
+    }
+
+    .face_4 {
+      background: #959595;
+      -webkit-transform: rotateY(-90deg) translateZ(7.5px);
+      transform: rotateY(-90deg) translateZ(7.5px);
+    }
+
+    .face_5 {
+      background: #ABABAB;
+      -webkit-transform: rotateX(-90deg) translateZ(7.5px);
+      transform: rotateX(-90deg) translateZ(7.5px);
+    }
+
+    .face_6 {
+      background: #ABABAB;
+      -webkit-transform: rotateX(90deg) translateZ(7.5px);
+      transform: rotateX(90deg) translateZ(7.5px);
+    }
+  }
+}
+
+
+.arrow {
+  position: absolute;
+  padding: 1.2rem;
+  box-shadow: 1px -1px 0 1px #b7b7b7 inset;
+  border: solid transparent;
+  border-width: 0 0 2rem 2rem;
+  top: 50%;
+  margin-top: -50px;
+
+  @include breakpoint(smalldesktop) {
+    padding: 1rem;
+  }
+
+   @include breakpoint(tablet) {
+     left: inherit;
+     margin-top: 0;
+     position: absolute;
+     top: inherit;
+   }
+
+  @include breakpoint(phone) {
+    padding: 0.7rem;
+  }
+
+  &.notActive {
+    box-shadow: 1px -1px 0 1px #dadada inset;
+
+    &:hover {
+      box-shadow: 1px -1px 0 1px #dadada inset;
+      transition: none;
+    }
+  }
+
+  &:hover {
+    box-shadow: 2px -2px 0 2px #3b3b3b inset;
+    transition: 0.2s;
+  }
+
+  &.right {
+    right: -10px;
+    transform: rotate(225deg);
+  }
+
+  &.left {
+    left: -10px;
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 0);
+    transform: rotate3d(0, 0, 0);
+  }
+  20%, 25% {
+    -webkit-transform: rotate3d(1, -1, 0, 180deg);
+    transform: rotate3d(1, -1, 0, 180deg);
+  }
+  45%, 50% {
+    -webkit-transform: rotate3d(0, 0, -1, 180deg);
+    transform: rotate3d(0, 0, -1, 180deg);
+  }
+  70%, 75% {
+    -webkit-transform: rotate3d(-1, -1, 0, 180deg);
+    transform: rotate3d(-1, -1, 0, 180deg);
+  }
+  95%, 100% {
+    -webkit-transform: rotate3d(0, 0, 0, 0deg);
+    transform: rotate3d(0, 0, 0, 0deg);
+  }
+}
+
+.point {
+  background: $greyColor;
+  border-radius: 100%;
+  cursor: pointer;
+  height: 14px;
+  position: absolute;
+  width: 14px;
+
+  &:hover {
+    background: #ddcbaa;
+    transition: 0.5s ease background;
+    &:before {
+      border-color: #ddcbaa;
+      transition: 0.5s ease border;
+    }
+  }
+  &:before {
+    animation: pulse 4s infinite;
+    border: 2px solid $greyColor;
+    border-radius: 100%;
+    content: "";
+    display: block;
+    height: 28px;
+    margin: -7px 0 0 -7px;
+    width: 28px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  10% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(1.25);
+  }
+  90% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 0;
+  }
+}
