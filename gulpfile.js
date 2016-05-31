@@ -3,6 +3,10 @@ var plugins = require('gulp-load-plugins')();
 var handlebars = require('handlebars');
 var gulpHandlebars = plugins.handlebarsHtml(handlebars);
 var critical = require('critical');
+
+
+/* Available startup modes are: 'production' & 'DEVELOPMENT' */
+var mode = plugins.mode();
 var psi = require('psi');
 var site = 'https://sebastianruehmann.de';
 var key = '';
@@ -16,14 +20,14 @@ gulp.task('scss', function() {
             browsers: ['last 4 versions'],
             cascade: false
         }))
-        .pipe(plugins.cssmin())
+        .pipe(mode.production(plugins.cssmin()))
         .pipe(plugins.rename({suffix: '.min'}))
         .pipe(gulp.dest('./dist/css'));
 });
 
 gulp.task('js', function() {
     return gulp.src('./src/js/**/*.js')
-        .pipe(plugins.uglify())
+        .pipe(mode.production(plugins.uglify()))
         .pipe(plugins.rename({suffix: '.min'}))
         .pipe(gulp.dest('./dist/js/'));
 });
@@ -69,9 +73,9 @@ gulp.task('html', function(cb) {
 
     gulp.src(["./src/index.hbs","./src/impressum.hbs"])
         .pipe(gulpHandlebars(templateData, options))
-        .pipe(plugins.htmlhint())
-        .pipe(plugins.htmlhint.reporter())
-        .pipe(plugins.htmlmin({collapseWhitespace: true}))
+        .pipe(mode.development(plugins.htmlhint()))
+        .pipe(mode.production(plugins.htmlhint.reporter()))
+        .pipe(mode.production(plugins.htmlmin({collapseWhitespace: true})))
         .pipe(plugins.rename({extname: ".html"}))
         .pipe(gulp.dest("./dist"));
 });
