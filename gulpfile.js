@@ -28,6 +28,9 @@ gulp.task('scss', function() {
 gulp.task('js', function() {
     return gulp.src('./src/js/**/*.js')
         .pipe(mode.production(plugins.uglify()))
+        .pipe(plugins.babel({
+            presets: ['es2015']
+        }))
         .pipe(plugins.rename({suffix: '.min'}))
         .pipe(gulp.dest('./dist/js/'));
 });
