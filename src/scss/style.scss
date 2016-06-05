@@ -530,7 +530,7 @@ footer {
 }
 
 header {
-  background: url(../img/bg1.svg);
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="100" viewBox="0 0 500 100"><path fill="#FFF" stroke="#FFF" stroke-miterlimit="10" d="M180 37c26 13.625 95.088 8.5 116.98.25S500 3.5 500 3.5H0S154 23.375 180 37z"/></svg>');
   background-size: 1500px;
   background-position: center -20px;
   background-repeat: no-repeat;
