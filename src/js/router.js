@@ -3,7 +3,6 @@ var contentw = document.getElementById("content-wrapper");
 var navilinks = document.getElementsByClassName("navigation-link");
 var navi = document.getElementById("mobile-navigation");
 var hamburger = document.getElementById("hamburger-icon");
-document.head = document.head || document.getElementsByTagName('head')[0];
 
 document.getElementById("logo").addEventListener("click",function() {scrollToElem("welcome") }, false);
 
@@ -94,28 +93,3 @@ function toggleNavigation(nav) {
 
 document.addEventListener("touchend", scroll, false);
 document.addEventListener("scroll", scroll, false);
-
-
-    function scroll() {
-        var overlay = document.getElementById("welcome-overlay");
-        var header = document.getElementsByTagName("header")[0];
-        var opacity = (window.pageYOffset / overlay.offsetHeight) * 1.4;
-        var welcome = document.getElementById("welcome-content");
-        var hamburger = document.getElementById("hamburger-icon");
-
-        if (opacity <= 1) {
-            overlay.style.opacity = opacity;
-            welcome.style.opacity = 1 + (opacity * -1);
-            if (W >= 1240) {
-                hamburger.style.background = "rgba(" + color + "," + opacity * 0.6 + ")";
-                hamburger.style.top = opacity * -1 * 25 + 40 + "px";
-            }
-        } else {
-            overlay.style.opacity = 1;
-            welcome.style.opacity = 0;
-            if (W >= 1240) {
-                hamburger.style.background = "rgba(" + color + ",0.6)";
-                hamburger.style.top = 15 + "px";
-            }
-        }
-    }

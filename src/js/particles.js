@@ -1,69 +1,94 @@
-Particles = function(view) {
-    this.el = document.getElementById("particles");
-    this.ctx = this.el.getContext("2d");
-    this.particles = [];
-    this.bindDistance = 100;
-    this.speed = 5;
-    this.canvasColor = "140, 35, 24";
-    this.bsr = this.ctx.webkitBackingStorePixelRatio ||
+class Particles {
+    constructor() {
+        this.el = document.getElementById("particles");
+        this.ctx = this.el.getContext("2d");
+        this.particles = [];
+        this.bindDistance = 100;
+        this.speed = 5;
+        this.canvasColor = "140, 35, 24";
+    }
+    set ratio(value) {
+        this.bsr = this.ctx.webkitBackingStorePixelRatio ||
         this.ctx.mozBackingStorePixelRatio ||
         this.ctx.msBackingStorePixelRatio ||
         this.ctx.oBackingStorePixelRatio ||
         this.ctx.backingStorePixelRatio || 1;
-    this.ratio = view.dpr / this.bsr;
-    this.w = view.width * this.ratio;
-    this.h = view.height * this.ratio;
-    this.particleCount = Math.round( view.width * view.height / 9500 + 20);
-};
 
-Particles.prototype = {
-    constructor: Particles,
-    initialize: function () {
-
+        this._ratio = value / this.bsr;
+    }
+    get ratio() {
+        return this._ratio;
+    }
+    set width(value) {
+        this._w = value * this.ratio;
+    }
+    get width() {
+        return this._w;
+    }
+    set height(value) {
+        this._h = value * this.ratio;
+    }
+    get height() {
+        return this._h;
+    }
+    set canvasColor(value) {
+        this._canvasColor = value;
+    }
+    get canvasColor() {
+        return this._canvasColor;
+    }
+    initialize() {
+        this.particleCount = Math.round(this.width * this.height / 9500 + 20);
         this.scaleCanvas();
         this.drawCanvas();
         this.addParticles();
-    },
-    initializePoint: function (p, delay) {
+
+        var animloop = this.animloop.bind(this);
+
+        setTimeout(function () {
+            animloop();
+        }, this.particleCount * 10);
+    }
+    initializePoint(p, delay) {
         setTimeout(function () {
             p.draw();
         }, delay);
-    },
-    drawCanvas: function () {
-        this.ctx.fillStyle = this.createGradient(this.w, this.h, this.canvasColor);
-        this.ctx.fillRect(0, 0, this.w, this.h);
-    },
-    scaleCanvas: function () {
+    }
+    drawCanvas() {
+        this.ctx.fillStyle = this.createGradient();
+        this.ctx.fillRect(0, 0, this.width, this.height);
+    }
+    scaleCanvas() {
         this.ctx.scale(this.ratio,this.ratio);
-        this.el.width = this.w;
-        this.el.style.width = this.w / this.ratio + "px";
-        this.el.height = this.h;
-        this.el.style.height = this.h / this.ratio + "px";
-    },
-    createGradient: function (W, H, color) {
-        var grd = this.ctx.createRadialGradient(parseInt(W / 2), parseInt(H * 0.8), 0, parseInt(W / 2), parseInt(W * 0.8), parseInt(W * 2));
-        grd.addColorStop(0, "rgb(" + color + ")");
+        this.el.width = this.width;
+        this.el.style.width = this.width / this.ratio + "px";
+        this.el.height = this.height;
+        this.el.style.height = this.height / this.ratio + "px";
+    }
+    createGradient() {
+        var grd = this.ctx.createRadialGradient(parseInt(this.width / 2), parseInt(this.height * 0.8), 0, parseInt(this.width / 2), parseInt(this.width * 0.8), parseInt(this.width * 2));
+        grd.addColorStop(0, "rgb(" + myApp.color + ")");
         grd.addColorStop(1, "rgb(88,88,88)");
 
         return grd;
-    },
-    addParticles: function () {
+    }
+    addParticles() {
         for (var t = 0; this.particleCount > t; t++) {
-            var p = new Particle(this.w, this.h, this.speed, this.ctx);
+            var p = new Particle(this.width, this.height, this.speed, this.ctx);
             this.particles.push(p);
             this.initializePoint(p,t*10);
         }
-    },
-    draw: function () {
+    }
+    draw() {
         this.drawCanvas();
         for (var t = 0; t < this.particles.length; t++) {
             this.particles[t].draw();
         }
         this.update();
-    },
-    update: function () {
-        var W = this.w;
-        var H = this.h;
+    }
+    update() {
+        var W = this.width;
+        var H = this.height;
 
         for (var t = 0; t < this.particles.length; t++) {
             var p = this.particles[t];
@@ -85,8 +110,8 @@ Particles.prototype = {
                 this.distance(p, p2);
             }
         }
-    },
-    distance: function (t, i) {
+    }
+    distance(t, i) {
         var a, e = t.x - i.x,
             n = t.y - i.y;
         a = Math.sqrt(e * e + n * n);
@@ -99,12 +124,19 @@ Particles.prototype = {
             this.ctx.stroke();
             this.ctx.closePath();
         }
-    },
-    animloop: function () {
+    }
+    animloop() {
         this.draw();
         var self = this;
-        requestAnimFrame(function() {self.animloop.call(self) });
-    },
+        this.animation = requestAnimFrame(function() {self.animloop.call(self) });
+    }
+    destroy() {
+        this.particles = [];
+        if (this.animation) {
+            window.cancelAnimationFrame(this.animation);
+            this.animation = undefined;
+        }
+    }
 }
 
 window.requestAnimFrame = function() {

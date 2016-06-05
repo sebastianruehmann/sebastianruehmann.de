@@ -1,20 +1,24 @@
-var App = App || function(){
-        this.color = this.getRandomColor();
-    };
+class App {
+    constructor() {
+        this.color = this.randomColor;
 
-App.prototype = {
-    constructor: App,
-    getRandomColor: function() {
+        this.view = new View();
+        this.particles = new Particles();
+        this.particles.ratio = this.view.dpr;
+        this.particles.width = this.view.width;
+        this.particles.height = this.view.height;
+
+        this.Component = Component;
+        this.Composition = Composition;
+    }
+    get randomColor() {
         var colors = ["140, 35, 24","94, 140, 106","83,125,141"];
         var r = Math.round(Math.random() * (colors.length - 1));
         return colors[r];
     }
-};
+}
 
-myApp = new App();
-
-myApp.view = new View();
-myApp.particles = new Particles(myApp.view);
+let myApp = new App();
 
 myApp.particles.canvasColor = myApp.color;
 if(myApp.view.width <= 700) {
@@ -23,9 +27,6 @@ if(myApp.view.width <= 700) {
 
 myApp.particles.initialize();
 
-setTimeout(function () {
-    myApp.particles.animloop();
-}, myApp.particles.particleCount * 10);
 
 document.getElementById("hi").style.color = "rgb(" + myApp.color + ")";
 document.getElementById("hamburger-icon").style.background = "rgba(" + myApp.color + ",0)";

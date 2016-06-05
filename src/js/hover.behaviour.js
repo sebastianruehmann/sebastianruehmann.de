@@ -28,6 +28,3 @@ for (var i = 0; caseslinks.length > i; i++) {
         el.classList.remove("active");
     }, false);
 }
-
-document.getElementById("hi").style.color = "rgb(" + color + ")";
-document.getElementById("hamburger-icon").style.background = "rgba(" + color + ",0)";
