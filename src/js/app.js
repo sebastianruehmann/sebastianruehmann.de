@@ -29,4 +29,3 @@ myApp.particles.initialize();
 
 
 document.getElementById("hi").style.color = "rgb(" + myApp.color + ")";
-document.getElementById("hamburger-icon").style.background = "rgba(" + myApp.color + ",0)";

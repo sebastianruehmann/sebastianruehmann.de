@@ -3,7 +3,7 @@ let HeaderComposition = new myApp.Composition();
 HeaderComposition.components = {
     "overlay": new myApp.Component("welcome-overlay"),
     "welcome": new myApp.Component("welcome-content"),
-    "hamburger": new myApp.Component("hamburger-icon"),
+    "hamburger": new myApp.Component("microman"),
     "window": new myApp.Component(window)
 };
 HeaderComposition.events = {

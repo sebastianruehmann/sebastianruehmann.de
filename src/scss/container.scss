@@ -31,7 +31,7 @@ section {
     position: relative;
     width: 100%;
 
-    &:not(:last-of-type):after {
+    &:after {
       bottom: -20px;
       background: rgba(255, 255, 255, 0.3);
       content: "";
@@ -39,6 +39,11 @@ section {
       height: 20px;
       position: absolute;
       width: 100%;
+    }
+
+    &:last-of-type:after {
+        bottom: -52px;
+        height: 52px !important;
     }
   }
 }

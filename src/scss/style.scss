@@ -539,7 +539,7 @@ header {
   width: 100%;
   z-index: 1000;
 
-  & #hamburger-icon {
+  & #microman {
     width: 50px;
     height: 40px;
     position: absolute;
@@ -755,18 +755,21 @@ header {
 }
 
 #mobile-navigation {
-  display: block;
+  display: none;
   height: 100%;
-  transform: translate3d(-100%, 0, 0);
   position: fixed;
+  top: 0;
+  left: 0;
   transition: all 0.4s ease-out;
   z-index: 100;
   vertical-align: middle;
+  opacity: 0;
   width: 100%;
 
-  &.isActive {
+  &.active {
     background: rgba(255, 255, 255, 0.85);
-    transform: translate3d(0, 0, 0);
+    display: block;
+    opacity: 1;
   }
 
   & ul {
@@ -783,7 +786,7 @@ header {
       color: #333;
       font-size: 30px;
       font-size: 5vh;
-      font-family: 'Ostrich', sans-serif;
+      font-family: $headlinefont;
       font-weight: 900;
       line-height: 2.5;
       letter-spacing: 13px;
