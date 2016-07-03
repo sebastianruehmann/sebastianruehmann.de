@@ -20,13 +20,13 @@ class Particles {
         return this._ratio;
     }
     set width(value) {
-        this._w = value * this.ratio;
+        this._w = value;
     }
     get width() {
         return this._w;
     }
     set height(value) {
-        this._h = value * this.ratio;
+        this._h = value;
     }
     get height() {
         return this._h;
