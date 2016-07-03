@@ -41,15 +41,12 @@ class Component {
         this.element.removeEventListener(event,callback);
     }
     addClass(name) {
-        this.element.className = this.element.className + " " + name;
+        this.element.classList.add(name);
     }
     removeClass(name) {
-        var cn = this.element.className;
-        var rxp = new RegExp( "s?b"+ name +"b", "g" );
-        cn = cn.replace( rxp, '' );
-        this.element.className = cn;
+        this.element.classList.remove(name);
     }
     hasClass(name) {
-        return ( (" " + this.element.className + " ").replace(/[\n\t]/g, " ").indexOf(name) > -1 )
+        return this.element.classList.contains(name);
     }
 }
