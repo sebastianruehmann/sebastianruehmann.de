@@ -1,0 +1,15 @@
+.button {
+  border: 2px solid $greyColor;
+  color: $greyColor;
+  cursor: pointer;
+  padding: 5px;
+
+  &:hover {
+    background: $greyColor;
+    color: white;
+  }
+
+  &.more {
+    text-align: center;
+  }
+}

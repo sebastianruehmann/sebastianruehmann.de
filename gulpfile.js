@@ -25,16 +25,6 @@ gulp.task('scss', function() {
         .pipe(gulp.dest('./dist/css'));
 });
 
-gulp.task('js', function() {
-    return gulp.src('./src/js/**/*.js')
-        .pipe(mode.production(plugins.uglify()))
-        .pipe(plugins.babel({
-            presets: ['es2015']
-        }))
-        .pipe(plugins.rename({suffix: '.min'}))
-        .pipe(gulp.dest('./dist/js/'));
-});
-
 gulp.task('html', function(cb) {
         options = {
             partialsDirectory : ['./src/partials']
@@ -86,7 +76,7 @@ gulp.task('html', function(cb) {
         .pipe(gulp.dest("./dist"));
 });
 
-gulp.task('critical', ['scss'], function() {
+/*gulp.task('critical', ['scss'], function() {
     critical.generate({
         base: 'dist/',
         src: 'index.html',
@@ -107,7 +97,7 @@ gulp.task('critical', ['scss'], function() {
         extract: true,
         dest: 'dist/css/critical.min.css'
     });
-});
+});*/
 
 gulp.task('img', function() {
     gulp.src("./src/img/**/*")
@@ -125,15 +115,34 @@ gulp.task('misc', function() {
         .pipe(gulp.dest("./dist/inc"));
 });
 
-gulp.task('build', ['html','scss','js','img','misc','critical','php']);
+gulp.task('js', function() {
+    return gulp.src('./src/js/**/*.js')
+        .pipe(plugins.babel({
+            presets: ['es2015']
+        }))
+        .pipe(gulp.dest('./dist/js/'));
+});
+
+gulp.task('js-pack',['js'], function() {
+    gulp.src(["./dist/js/index.js"])
+        //.pipe(plugins.sourcemaps.init())
+        .pipe(plugins.browserify({
+            insertGlobals : true
+        }))
+        //.pipe(plugins.uglify())
+        //.pipe(plugins.sourcemaps.write())
+        .pipe(plugins.rename({suffix: ".min"}))
+        .pipe(gulp.dest('./dist/js'))
+});
+
+gulp.task('build', ['html','scss','js-pack','img','misc','php']);
 
 gulp.task('test', ['desktop','mobile']);
 
-gulp.task('watch', function() {
+gulp.task('watch',['build'], function() {
     gulp.watch('./src/js/**/*.js', ['js']);
-    gulp.watch('./src/scss/**/*.scss', ['scss','critical']);
+    gulp.watch('./src/scss/**/*.scss', ['scss']);
     gulp.watch(['./src/**/*.hbs','./src/work.json'], ['html']);
-    /* TODO HTML Task kills watch process */
     gulp.watch("./src/inc/*", ['misc']);
     gulp.watch("./src/img/*", ["img"]);
     gulp.watch("./src/*.php", ["php"]);

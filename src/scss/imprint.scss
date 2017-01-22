@@ -1,0 +1,102 @@
+@import "boilerplate";
+@import "general";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body, html {
+  color: #636363;
+  font-family: $font;
+  font-size: $tnormal;
+  font-weight: 300;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  &.preload * {
+    transition: none !important;
+  }
+}
+
+section {
+  background: #fefefe;
+  margin: 20px 0 0 0;
+  padding: 20px 0;
+  position: relative;
+  width: 100%;
+}
+
+p {
+  line-height: 1.4em;
+  letter-spacing: 0.01em;
+  text-align: left;
+  padding: 10px 0;
+
+  @include breakpoint(phone) {
+    letter-spacing: 0.1px;
+    text-transform: none;
+  }
+
+  a {
+    border-bottom: 1px solid $greyColor;
+    text-decoration: none;
+  }
+
+  a:hover {
+    border-bottom: 1px solid $greyHoverColor;
+    color: #3b3b3b;
+    transition: all 0.5s ease;
+  }
+}
+
+.container {
+  box-sizing: border-box;
+  margin: 0px auto;
+  padding: 0 15px;
+  height: 100%;
+  width: 100%;
+
+  @include breakpoint(phone) {
+    padding: 0 20px;
+  }
+
+  @include breakpoint(tablet) {
+    padding: 0 10px;
+  }
+
+  @include breakpoint(smalldesktop) {
+    width: 1050px;
+  }
+}
+
+.back {
+  border: 4px solid #FFF;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #FFF;
+  font-weight: 700;
+  left: 4%;
+  top: 8%;
+  transform: translateY(-50%);
+  text-decoration: none;
+  position: absolute;
+
+  &:hover {
+    background: #FFF;
+    color: #333;
+  }
+}
+
+#imprint {
+  background: #FFF;
+  top: 15%;
+  height: 85%;
+  position: absolute;
+  padding-top: 40px;
+  width: 100%;
+}

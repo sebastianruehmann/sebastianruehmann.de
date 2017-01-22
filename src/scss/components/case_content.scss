@@ -1,0 +1,176 @@
+.case-content-overlay {
+  background: white;
+  box-shadow: 0 0 0 25px rgba(255,255,255,0.7);
+  display: none;
+  min-height: 230px;
+  padding-top: 130px;
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+
+  @include breakpoint(tablet) {
+    padding-top: 92px;
+  }
+
+  @include breakpoint(phone) {
+    margin-left: -20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: calc(100% + 40px);
+  }
+
+  .case-content-overlay-wrapper {
+    padding-bottom: 40px;
+    position: relative;
+  }
+
+  &.open {
+    display: block;
+  }
+
+  // Left Cases
+  &.case-section-left {
+    .case-content-header {
+      right: 10px;
+      @include breakpoint(phone) {
+        right: 0;
+      }
+    }
+    .case-content-divider {
+      left: 20px;
+      @include breakpoint(phone) {
+        left: 0 !important;
+      }
+      width: 130px;
+    }
+    .case-content-overlay-wrapper {
+      padding-left: 10px;
+      @include breakpoint(phone) {
+        padding-left: 0;
+      }
+    }
+
+    &.case-is-right .case-content-divider {
+      width: 20px;
+    }
+  }
+
+  // Right Cases
+  &.case-section-right {
+    .col-1-4.center {
+      text-align: right;
+    }
+    .case-content-header {
+      left: 10px;
+      @include breakpoint(phone) {
+        left: 0;
+      }
+    }
+    .case-content-divider {
+      right: 20px;
+      @include breakpoint(phone) {
+        right: 0 !important;
+      }
+      width: 130px;
+    }
+
+    &.case-is-left .case-content-divider {
+      width: 20px;
+    }
+  }
+
+  .case-content-name {
+    @extend h2;
+  }
+
+  .case-content-title {
+    position: relative;
+    background: white;
+    display: none;
+    color: #636363;
+    font-family: $headlinefont;
+    font-size: 22px;
+    padding: 10px;
+    text-decoration: none;
+    text-transform: none;
+    z-index: 1000;
+
+    @include breakpoint(tablet) {
+      display: inline-block;
+    }
+    @include breakpoint(phone) {
+      display: inline-block;
+    }
+  }
+
+  .case-content-divider {
+    background: #636363;
+    display: block;
+    height: 1px;
+    position: absolute;
+    margin-top: -23px;
+    transition: 2.5s ease all;
+
+    &.animate {
+      width: calc(100% - 30px) !important;
+
+      @include breakpoint(phone) {
+        width: 100% !important;
+      }
+    }
+  }
+
+  .case-content-header {
+    margin-top: -27px;
+    position: absolute;
+    transform: translateY(-100%);
+  }
+
+  .case-content-date {
+    display: block;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  .case-content-description {
+    padding: 0 20px 20px 10px;
+    @include breakpoint(phone) {
+      padding: 0 20px 20px 0;
+    }
+  }
+
+  .case-content-link {
+    background: white;
+    border: 1px solid $greyColor;
+    color: $greyColor;
+    padding: 5px 10px;
+    margin-left: 10px;
+    text-decoration: none;
+
+    @include breakpoint(phone) {
+      margin-left: 0;
+    }
+
+    &:hover {
+      background: $greyHoverColor;
+      border: 1px solid $greyHoverColor;
+      color: white;
+    }
+  }
+
+  .col-1-4.center {
+    @include breakpoint(phone) {
+      margin: 0 0 0 25px;
+      width: auto !important;
+    }
+  }
+}
+
+#case-content-overlay-bg {
+  display: none;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}

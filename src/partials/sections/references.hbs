@@ -1,0 +1,52 @@
+<article id="references">
+    <div class="container fixed"><h2>Projekte</h2>
+        <p>Ich gehöre als Webentwickler zum Team der Digital-Agentur PUSHH,
+            konzipiere und entwickle aber auch freiberuflich eigene und kundenspezifische
+            Projekte. Hier einige Kostproben.
+        </p>
+        <div id="cases_wrapper">
+            <div class="col-left-1-3">
+                {{#each worksections.left}}
+                    <div data-key="{{@key}}" class="case-content {{orientation}}">
+                        <img alt="Sebastian Rühmann {{title}}" id="{{@key}}" class="case_teaser" src="img/cases/{{@key}}/teaser.jpg">
+                    </div>
+                {{/each}}
+            </div>
+            <div id="cases_summary">
+                {{#each work}}
+                    <h3 class="case-is-{{orientation}} case-section-{{section}}">{{ title }}</h3>
+                {{/each}}
+            </div>
+            <div class="col-right-1-3">
+                {{#each worksections.right}}
+                    <div data-key="{{@key}}" class="case-content {{orientation}}">
+                        <img alt="Sebastian Rühmann {{title}}" id="{{@key}}" class="case_teaser" src="img/cases/{{@key}}/teaser.jpg">
+                    </div>
+                {{/each}}
+            </div>
+            <div id="case-content-overlay-bg"></div>
+            {{#each work}}
+                <div data-overlay="{{@key}}" class="case-content-overlay case-is-{{orientation}} case-section-{{section}}">
+                    <div class="col-1-4 center">
+                        <h3 class="case-content-title">{{ title }}</h3>
+                    </div>
+                    <div class="case-content-overlay-wrapper">
+                        <header class="case-content-header">
+                            <h4 class="case-content-name">{{ name }}</h4>
+                            <span class="case-content-date">{{ date }}</span>
+                        </header>
+                        <span class="case-content-divider"></span>
+                        <div class="case-content-description">
+                            {{ description }}
+                        </div>
+                        <a target="_blank" class="case-content-link" href="{{link}}">
+                            {{ cta }}
+                        </a>
+                    </div>
+                </div>
+            {{/each}}
+            <div style="clear: both;"></div>
+            <div class="button more">...</div>
+        </div>
+    </div>
+</article>

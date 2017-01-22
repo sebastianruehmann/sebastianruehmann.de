@@ -1,0 +1,50 @@
+{
+    "bonduelle": {
+      "title": "Bonduelle",
+      "name": "New Look 🖌",
+      "date": "April - Dezember 2015",
+      "description":"",
+      "link": "https:\/\/bonduelle.de",
+      "cta": "Seite aufrufen"
+    },
+    "bytefm": {
+      "title": "ByteFM Shop",
+      "name": "Get the Merch!",
+      "date": "Dezember 2015 - Januar 2016",
+      "description":"Der Online-Radio Sender ByteFM verkauft jetzt auch seinen eigenen Merchandise. Im Shop findet ihr alles von T-Shirts über Sweater bis zur selbst zusammen gebauten Boombox. Die Seite beeindruckt durch ein übersichtliches User Interface und erscheint im einzigartigen ByteFM Look. An dieser Stelle auch vielen Dank an Tine Ohlau für die tolle Zusammenarbeit.",
+      "link": "http:\/\/byte.fm\/shop",
+      "cta": "Shoppen gehen"
+    },
+    "casio": {
+      "title": "Casio",
+      "name": "And.. Action!",
+      "date": "März - April 2016",
+      "description": "Casio´s neue Cam die EX-FR100 ist raus und in Zusammenarbeit mit BP-Media entstand diese stylische und zeitlose Webseite. In meiner Regie stand die Programmierung des Frontends. Eine besondere Herausforderung waren die vielen Bilder und Hintergrundvideos. Mittels IMGIX und etlichen Bild-, sowie Videooptimierungen lädt die Seite nun doch auch mit den vielen eindrucksvollen Actionaufnahmen rasant schnell!",
+      "link": "http:\/\/raus-ins-abenteuer.de",
+      "cta": "Live erleben"
+    },
+    "schafhof": {
+      "title": "Gestüt Schafhof",
+      "date": "Februar 2016",
+      "name": "The World's best 🐎",
+      "description": "",
+      "link": "http:\/\/gestuet-schafhof.com",
+      "cta": "Jetzt anschauen"
+    },
+    "soerensieg": {
+      "title": "Sören Sieg",
+      "date": "Februar - April 2015",
+      "name": "Get creative 🎷",
+      "description": "Sören Sieg",
+      "link": "http:\/\/soerensieg.de",
+      "cta": "Sören kennenlernen"
+    },
+    "krebaer": {
+      "title": "Krebaer Nusswerke",
+      "date": "August 2015",
+      "name": "Cinemagraphs",
+      "description": "",
+      "link": "http:\/\/krebaer-nusswerk.de",
+      "cta": "zur Webseite"
+    }
+  }

@@ -1,0 +1,68 @@
+#cases_summary {
+  left: 50%;
+  position: absolute;
+  width: 25%;
+  display: none;
+  transform: translateX(-50%);
+
+  @include breakpoint(tablet) {
+    display: block;
+  }
+
+  h3 {
+    font-size: $tnormal;
+    display: block;
+    color: #636363;
+    font-family: $headlinefont;
+    margin-top: 99px;
+    padding: 0 10px;
+    position: relative;
+    text-decoration: none;
+    text-transform: none;
+    text-align: center;
+
+    &:first-child {
+      margin-top: 102px;
+    }
+
+    @include breakpoint(tablet) {
+      &:after {
+        background: #636363;
+        display: block;
+        content: "";
+        height: 1px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &.case-section-left {
+        text-align: left;
+
+        &:after {
+          left: -5px;
+          width: 130px;
+          transform: translateX(-100%);
+        }
+
+        &.case-is-right:after {
+          width: 20px;
+        }
+      }
+
+      &.case-section-right {
+        text-align: right;
+
+        &:after {
+          right: -5px;
+          width: 130px;
+          transform: translateX(100%);
+        }
+
+        &.case-is-left:after {
+          width: 20px;
+        }
+      }
+    }
+  }
+}
