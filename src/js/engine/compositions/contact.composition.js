@@ -1,33 +1,36 @@
-let ContactComposition = new myApp.Composition();
+import {default as Composition} from "./../composition";
 
-ContactComposition.components = {
-    "name": new myApp.Component("fieldName"),
-    "email": new myApp.Component("fieldEmail"),
-    "message": new myApp.Component("fieldMessage"),
-    "form": new myApp.Component("form")
-};
-ContactComposition.events = {
-    "name": {
-        "blur": "validate"
-    },
-    "email": {
-        "blur": "validate"
-    },
-    "message": {
-        "blur": "validate"
-    },
-    "form": {
-        "submit": "send"
+class ContactComposition extends Composition {
+    constructor() {
+        const components = {
+            "name": "fieldName",
+            "email": "fieldEmail",
+            "message": "fieldMessage",
+            "form": "form"
+        };
+        const events = {
+            "name": {
+                "blur": "validate"
+            },
+            "email": {
+                "blur": "validate"
+            },
+            "message": {
+                "blur": "validate"
+            },
+            "form": {
+                "submit": "send"
+            }
+        };
+        super(components, events);
+
+        this.attachEvents()
     }
-};
-
-ContactComposition.animations = {
-    "validate": function(component) {
-
-        var isValid = this.animations["isValid"](component);
-        this.animations["setInputState"](component,isValid);
-    },
-    "setInputState": function(component, okay) {
+    validate(component) {
+        var isValid = this.isValid(component);
+        this.setInputState(component,isValid);
+    }
+    setInputState(component, okay) {
         if (okay) {
             component.removeClass("error");
             component.addClass("success");
@@ -35,14 +38,14 @@ ContactComposition.animations = {
             component.removeClass("success");
             component.addClass("error");
         }
-    },
-    "isValid": function(component) {
+    }
+    isValid(component) {
         var el = component.element;
 
         var okay = false;
         switch (el.name) {
             case "name":
-                if (el.value.length >= 4) {
+                if (el.value.length >= 2) {
                     okay = true;
                 }
                 break;
@@ -63,8 +66,8 @@ ContactComposition.animations = {
         }
 
         return okay;
-    },
-    "allInputsValid": function() {
+    }
+    allInputsValid() {
         var allValid = true;
         var inputs = [
             this.components["name"],
@@ -75,17 +78,19 @@ ContactComposition.animations = {
         var t = this;
 
         inputs.forEach(function(component,key) {
-            var isValid = t.animations["isValid"](component);
+            var isValid = t.isValid(component);
             if(!isValid) {
                 allValid = false;
             }
-            t.animations["setInputState"](component, isValid);
+            if(component.element.value.length != 0) {
+                t.setInputState(component, isValid);
+            }
         });
 
         return allValid;
-    },
-    "send": function() {
-        if(this.animations["allInputsValid"].call(this)) {
+    }
+    send() {
+        if(this.allInputsValid.call(this)) {
             var xmlhttp = new XMLHttpRequest();
 
             var url = "send.php";
@@ -145,6 +150,6 @@ ContactComposition.animations = {
         event.preventDefault();
         return false;
     }
-};
+}
 
-ContactComposition.attachEvents();
+export {ContactComposition as default}

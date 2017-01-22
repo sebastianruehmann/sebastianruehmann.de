@@ -27,10 +27,6 @@
   transition: none !important;
 }
 
-section {
-  height: 100%;
-}
-
 body, html {
   color: #4f4f4f;
   font-family: $font;
@@ -56,10 +52,6 @@ body, html {
   &.preload * {
     transition: none !important;
   }
-}
-
-body {
-  overflow-x: hidden;
 }
 
 a {
@@ -104,15 +96,11 @@ p {
   a {
     border-bottom: 1px solid $greyColor;
     text-decoration: none;
+    transition: all 0.5s ease;
   }
 
   a:hover {
     border-bottom: 1px solid $greyHoverColor;
     color: #3b3b3b;
-    transition: all 0.5s ease;
   }
-}
-
-.hidden {
-  display: none;
 }

@@ -37,4 +37,8 @@ class View {
     get scrollTop() {
         return this._scrollTop;
     }
+
+    //todo breakpoint function + event
 }
+
+export {View as default}

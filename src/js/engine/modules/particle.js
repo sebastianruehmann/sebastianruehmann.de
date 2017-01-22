@@ -14,3 +14,5 @@ class Particle {
         this.ctx.fill()
     }
 }
+
+export {Particle as default}

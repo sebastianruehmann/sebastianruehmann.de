@@ -1,9 +1,15 @@
 class Component {
     constructor(element) {
         if(typeof element === 'string') {
-            this.element = document.getElementById(element);
-        } else {
+            if(this.check(document.getElementById(element))) {
+                this.element = document.getElementById(element);
+            } else {
+                this.element = document.createElement("div");
+            }
+        } else if(this.check(element)) {
             this.element = element;
+        } else {
+            this.element = document.createElement("div");
         }
     }
     style(prop, value) {
@@ -49,4 +55,13 @@ class Component {
     hasClass(name) {
         return this.element.classList.contains(name);
     }
+    check(element) {
+        if(typeof element === 'undefined') {
+            return false;
+        }
+
+        return true;
+    }
 }
+
+export {Component as default}

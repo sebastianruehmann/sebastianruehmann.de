@@ -1,28 +1,17 @@
 @import "boilerplate";
 
-.content {
-  clear: both;
-  margin-top: 2%;
-}
-
-#content-wrapper {
+main {
   position: absolute;
   left: 0;
   height: 100%;
-  transition: all 0.5s ease;
-  width: 100%;
   z-index: 2;
-  -webkit-backface-visibility: hidden;
-
-  &.isActive {
-    transform: translate3d(100%, 72px, 0);
-  }
-  &.isChanged {
-    transform: translate3d(100%, 2px, 0);
-  }
+  width: 100%;
 }
 
 section {
+  height: 100%;
+  width: 100%;
+
   & article {
     background: #fefefe;
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.51);
@@ -31,7 +20,7 @@ section {
     position: relative;
     width: 100%;
 
-    &:after {
+    &:not(:last-of-type):after {
       bottom: -20px;
       background: rgba(255, 255, 255, 0.3);
       content: "";
@@ -39,11 +28,6 @@ section {
       height: 20px;
       position: absolute;
       width: 100%;
-    }
-
-    &:last-of-type:after {
-        bottom: -52px;
-        height: 52px !important;
     }
   }
 }
@@ -126,8 +110,16 @@ section {
   }
 }
 
+.col-1-4 {
+  width: 25%;
+}
+
 .col-right-1-3, .col-right-1-4, .col-left-1-3, .col-left-1-4, .col-left-2-3 {
   position: relative;
+}
+
+.center {
+  margin: 0 auto;
 }
 
 .right {

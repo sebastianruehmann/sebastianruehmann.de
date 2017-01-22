@@ -1,3 +1,5 @@
+/* FONTS */
+
 $font: WorkSans, sans-serif;
 $headlinefont: Raleway, sans-serif;
 
@@ -20,8 +22,6 @@ $f3: 20px;
 $tnormal: 22px;
 
 /* BREAKPOINTS */
-
-
 
 @mixin breakpoint($point) {
   @if $point == bigdesktop {

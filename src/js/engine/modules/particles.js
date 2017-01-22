@@ -1,3 +1,5 @@
+import {default as Particle} from "./particle";
+
 class Particles {
     constructor() {
         this.el = document.getElementById("particles");
@@ -20,13 +22,13 @@ class Particles {
         return this._ratio;
     }
     set width(value) {
-        this._w = value;
+        this._w = value * this.ratio;
     }
     get width() {
         return this._w;
     }
     set height(value) {
-        this._h = value;
+        this._h = value * this.ratio;
     }
     get height() {
         return this._h;
@@ -59,15 +61,15 @@ class Particles {
         this.ctx.fillRect(0, 0, this.width, this.height);
     }
     scaleCanvas() {
-        this.ctx.scale(this.ratio,this.ratio);
         this.el.width = this.width;
         this.el.style.width = this.width / this.ratio + "px";
         this.el.height = this.height;
         this.el.style.height = this.height / this.ratio + "px";
+        this.ctx.scale(this.ratio,this.ratio);
     }
     createGradient() {
         var grd = this.ctx.createRadialGradient(parseInt(this.width / 2), parseInt(this.height * 0.8), 0, parseInt(this.width / 2), parseInt(this.width * 0.8), parseInt(this.width * 2));
-        grd.addColorStop(0, "rgb(" + myApp.color + ")");
+        grd.addColorStop(0, "rgb(" + this.canvasColor + ")");
         grd.addColorStop(1, "rgb(88,88,88)");
 
         return grd;
@@ -111,16 +113,16 @@ class Particles {
             }
         }
     }
-    distance(t, i) {
-        var a, e = t.x - i.x,
-            n = t.y - i.y;
+    distance(p1, p2) {
+        var a, e = p1.x - p2.x,
+            n = p1.y - p2.y;
         a = Math.sqrt(e * e + n * n);
 
         if (this.bindDistance >= a) {
             this.ctx.beginPath();
             this.ctx.strokeStyle = "rgba(255, 255, 255," + (1 - a / this.bindDistance) + ")";
-            this.ctx.moveTo(t.x, t.y);
-            this.ctx.lineTo(i.x, i.y);
+            this.ctx.moveTo(p1.x, p1.y);
+            this.ctx.lineTo(p2.x, p2.y);
             this.ctx.stroke();
             this.ctx.closePath();
         }
@@ -128,7 +130,7 @@ class Particles {
     animloop() {
         this.draw();
         var self = this;
-        this.animation = requestAnimFrame(function() {self.animloop.call(self) });
+        this.animation = requestAnimFrame(() => { this.animloop() });
     }
     destroy() {
         this.particles = [];
@@ -139,8 +141,4 @@ class Particles {
     }
 }
 
-window.requestAnimFrame = function() {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (t) {
-            window.setTimeout(t, 1e3 / 60)
-        }
-}();
+export {Particles as default}

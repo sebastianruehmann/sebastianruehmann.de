@@ -22,16 +22,35 @@ body, html {
   }
 }
 
-body {
-  overflow-x: hidden;
-}
-
 section {
   background: #fefefe;
   margin: 20px 0 0 0;
   padding: 20px 0;
   position: relative;
   width: 100%;
+}
+
+p {
+  line-height: 1.4em;
+  letter-spacing: 0.01em;
+  text-align: left;
+  padding: 10px 0;
+
+  @include breakpoint(phone) {
+    letter-spacing: 0.1px;
+    text-transform: none;
+  }
+
+  a {
+    border-bottom: 1px solid $greyColor;
+    text-decoration: none;
+  }
+
+  a:hover {
+    border-bottom: 1px solid $greyHoverColor;
+    color: #3b3b3b;
+    transition: all 0.5s ease;
+  }
 }
 
 .container {
