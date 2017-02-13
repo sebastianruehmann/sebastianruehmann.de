@@ -1,8 +1,0 @@
-<application>
-  <component name="FileTypeManager" version="16">
-    <extensionMap>
-      <mapping ext="install" type="PHP" />
-      <mapping pattern="s" type="PLAIN_TEXT" />
-    </extensionMap>
-  </component>
-</application>
